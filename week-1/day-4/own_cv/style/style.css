@@ -1,0 +1,62 @@
+body {
+  color: #333;
+  font-family: Lato, sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+header {
+  color: white;
+  background-image: url(../img/img1_header.jpg);
+  background-position: center center;
+  background-size: cover;
+  padding-bottom: 100px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 100px;
+}
+
+h1 {
+  font-family: Merriweather, serif;
+  font-weight: 900;
+  text-align: center;
+}
+
+h2 {
+  font-weight: 900;
+}
+
+h3 {
+  font-weight: 700;
+  margin-bottom: 0px;
+}
+
+ul{
+  list-style-type: disc;
+}
+
+blockquote {
+  color: #555;
+  font-family: Merriweather, serif;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.wrap {
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.acronym {
+  font-size: 1.5em;
+}
+
+.acronymlist {
+  list-style-type: none;
+}
+
+.logo {
+  max-height: 100px;
+  max-width: 175px;
+}

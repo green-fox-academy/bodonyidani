@@ -1,0 +1,6 @@
+What would you like to do?
+1. Add new task (A)
+2. Change priority (P)
+3. Change due date (D)
+4. Remove task (R)
+5. Quit this crap (Q)

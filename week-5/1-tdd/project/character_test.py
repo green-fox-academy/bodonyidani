@@ -2,7 +2,7 @@ import unittest
 from character import Character
 
 class TestCharacter(unittest.TestCase):
-    def test_existance(self):
+    def test_existence(self):
         character = Character("Test", 100, 10)
         self.assertEqual(character.name, "Test")
         self.assertEqual(character.hp, 100)

@@ -81,33 +81,17 @@ class Player():
         self.display_current_luck()
         print_skulls()
 
-    def strike(self, opponent):
-        roll_dice_for_self = randint(2, 12)
-        roll_diece_for_opponent = randint(2, 12)
-        own_dexterity = self.dexterity + roll_dice_for_self
-        opponent_dexterity = opponent.dexterity + roll_diece_for_opponent
-        if own_dexterity > opponent_dexterity:
-            return "player hit"
-            print("You hit " + opponent.name.upper() + "!")
-        elif own_dexterity < opponent_dexterity:
-            return "monster hit"
-            print(opponent.name.upper() + " hit you!")
-        else:
-            return "draw"
-            print("It's a draw!")
-
     def suffer_damage(self, damage):
         self.currhealth -= damage
 
-    def try_luck(self):
-        roll_dice = randint(2, 12)
-        if self.currluck >= roll_dice:
-            return "luck"
-            self.currluck -= 1
-            print("You are lucky!")
-        else:
-            return "no luck"
-            print("No luck this time!")
+#    def try_luck(self):
+#        roll_dice = randint(2, 12)
+#        if self.currluck >= roll_dice:
+#            self.currluck -= 1
+#            print("You are lucky!")
+#        else:
+#            return "no luck"
+#            print("No luck this time!")
 
     def save_character(self):
         player = {
@@ -138,3 +122,33 @@ class Monster(Player):
         self.display_current_health()
         self.display_dexterity()
         print_skulls()
+
+class Battle():
+    def __init__(self, player, monster, loser = None):
+        self.player = player
+        self.monster = monster
+        self.loser = loser
+
+    def newround(self):
+        roll_dice_for_player = randint(2, 12)
+        roll_dice_for_monster = randint(2, 12)
+        player_dexterity = self.player.dexterity + roll_dice_for_player
+        monster_dexterity = self.monster.dexterity + roll_dice_for_monster
+        if player_dexterity > monster_dexterity:
+            self.loser = self.monster
+            print_skulls()
+            print("You hit " + self.monster.name.upper() + "!")
+            print_skulls()
+        elif player_dexterity < monster_dexterity:
+            self.loser = self.player
+            print_skulls()
+            print(self.monster.name.upper() + " hit you!")
+            print_skulls()
+        else:
+#            self.loser = "draw"
+            print_skulls()
+            print("It's a draw!")
+            print_skulls()
+
+    def query_loser(self):
+        return self.loser

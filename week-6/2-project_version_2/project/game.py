@@ -1,12 +1,13 @@
 from display import print_skulls, print_error_message
 from menu import MenuItem, Menu
-from player import Player, Monster
+from player import Player, Monster, Battle
 from random import randint
 import json
 import unicodedata
 
 player = Player()
 monster = Monster("SZUPERMAJOM", 10, 20, 20)
+battle = Battle(player, monster)
 
 def run_main_menu():
     main_menu.print_menu()
@@ -105,23 +106,23 @@ def run_test_fight_submenu():
     else:
         return test_fight_submenu.choose(userinput)
 
+def fight():
+    battle.newround()
+    return run_strike_submenu()
+
 def run_strike_submenu():
-    fight_result = player.strike(monster)
+#    battle.query_loser().suffer_damage(2)
+#    player.display_name()
+#    player.display_current_health()
+#    monster.display_name()
+#    monster.display_current_health()
     strike_submenu.print_menu()
     userinput = strike_submenu.store_selection()
     if userinput not in strike_submenu.valid_inputs():
         print_error_message()
         return run_strike_submenu()
-    elif userinput == "c" and fight_result = "player hit":
-        monster.suffer_damage(2)
-    elif userinput == "c" and fight_result = "monster hit":
-        player.suffer_damage(2)
-    elif userinput == "l":
-        if player.try_luck() == "luck"
-
-
-
-
+    else:
+        return strike_submenu.choose(userinput)
 
 main_menu = Menu("main menu", [
     MenuItem("n", "new game", request_username),
@@ -168,15 +169,15 @@ begin_submenu = Menu("may the force be with you!", [
     "Choose from the options above: ")
 
 test_fight_submenu = Menu("test your sword in a test fight", [
-    MenuItem("s", "strike", run_strike_submenu),
+    MenuItem("s", "strike", fight),
     MenuItem("r", "retreat", "retreat"),
     MenuItem("q", "quit", "quit")
     ],
     " What next? ")
 
 strike_submenu = Menu("fight!", [
-    MenuItem("c", "continue", run_strike_submenu),
-    MenuItem("l", "try your luck", run_try_luck),
+    MenuItem("c", "continue", fight),
+    MenuItem("l", "try your luck", "try_luck"),
     MenuItem("r", "retreat", "retreat"),
     MenuItem("q", "quit", "quit")
     ],

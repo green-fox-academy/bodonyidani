@@ -84,14 +84,13 @@ class Player():
     def suffer_damage(self, damage):
         self.currhealth -= damage
 
-#    def try_luck(self):
-#        roll_dice = randint(2, 12)
-#        if self.currluck >= roll_dice:
-#            self.currluck -= 1
-#            print("You are lucky!")
-#        else:
-#            return "no luck"
-#            print("No luck this time!")
+    def test_luck(self):
+        roll_dice = randint(2, 12)
+        if self.currluck >= roll_dice:
+            self.currluck -= 1
+            return True
+        else:
+            return False
 
     def save_character(self):
         player = {
@@ -103,7 +102,7 @@ class Player():
             "LUCK": self.currluck,
             "INVENTORY": self.inventory
             }
-        print(player)
+        return player
 
 class Monster(Player):
     def __init__(self = None,
@@ -145,10 +144,17 @@ class Battle():
             print(self.monster.name.upper() + " hit you!")
             print_skulls()
         else:
-#            self.loser = "draw"
+            self.loser = None
             print_skulls()
             print("It's a draw!")
             print_skulls()
 
     def query_loser(self):
         return self.loser
+
+    def display_result(self):
+        print_skulls()
+        self.player.display_name()
+        self.player.display_current_health()
+        self.monster.display_name()
+        self.monster.display_current_health()

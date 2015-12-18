@@ -40,11 +40,11 @@ def load_game():
     if player.name == None:
         return request_username()
     elif player.currhealth == None:
-        return run_roll_stats_submenu()
+        return run_new_game_submenu()
     elif len(player.inventory) < 3:
         return run_select_potion_submenu()
     else:
-        return run_begin_submenu()
+        return run_reselect_potion_submenu()
 
 def request_username():
     print_skulls()

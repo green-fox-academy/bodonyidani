@@ -1,0 +1,43 @@
+body {
+  width: 100%;
+}
+
+.main {
+  display: flex;
+  flex-shrink: 0.5;
+  justify-content: center;
+  margin: auto;
+  width: 100%;
+}
+
+.navigation-pane {
+  padding: 10% 1%;
+}
+
+.leftbutton::before {
+  content: "\25BA";
+  display: inline-block;
+  transform: rotate(180deg);
+}
+
+.rightbutton::before {
+  content: "\25BA";
+}
+
+.currentpic {
+  height: 100%;
+  width: 100%;
+}
+
+.thumbnail-box {
+  display: flex;
+  flex-shrink: 0.5;
+  justify-content: center;
+  max-width: 100%;
+}
+
+.thumbnail-image {
+  height: 30%;
+  margin: 10px;
+  width: 30%;
+}

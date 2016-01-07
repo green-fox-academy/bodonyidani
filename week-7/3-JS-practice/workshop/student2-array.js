@@ -1,31 +1,20 @@
 'use strict';
 
 function Student() {
-  this.grades = {};
+  this.grades = [];
   this.addGrade = function(subject, grade) {
-    if (this.grades[subject] === undefined) {
-      this.grades[subject] = [];
-    }
-    this.grades[subject].push(grade);
+    this.grades.push({subject: subject, grade: grade});
   };
   this.getCount = function() {
     var output = {};
-    for (var subject in this.grades) {
-      output[subject] = this.grades[subject].length;
-    }
+    this.grades.forEach(function(grade) {
+      if (!(grade.subject in output)) {
+        output[grade.subject] = 0;
+      }
+      output[grade.subject]++;
+    });
     return output;
-  };
-  this.getAverage = function() {
-    var sum = 0;
-    var count = 0;
-    for (var subject in this.grades) {
-      this.grades[subject].forEach(function(grade) {
-        sum += grade;
-        count += 1;
-      });
-    }
-    return sum / count;
-  };
+  }
 }
 
 var dezso = new Student();
@@ -39,7 +28,6 @@ dezso.addGrade('magyar', 4);
 
 console.log(dezso.grades)
 console.log(dezso.getCount())
-console.log(dezso.getAverage())
 
 
 //dezso.getCount() // {'rajz': 2, 'matek': 3}

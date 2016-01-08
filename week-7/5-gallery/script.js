@@ -19,9 +19,11 @@ var startingIndex = 0;
 rightbutton.addEventListener('click', function () {
   if (startingIndex < images.length - 1) {
     currentpic.setAttribute('src', images[startingIndex + 1]);
+    thumbnailBox.childNodes[parseInt(currentpic.src[currentpic.src.length - 5])].classList.add('active-image');
     startingIndex += 1;
   } else {
     currentpic.setAttribute('src', images[0]);
+    thumbnailBox.childNodes[0].classList.add('active-image');
     startingIndex = 0;
   }
 });
@@ -29,9 +31,11 @@ rightbutton.addEventListener('click', function () {
 leftbutton.addEventListener('click', function () {
   if (startingIndex > 0) {
     currentpic.setAttribute('src', images[startingIndex - 1]);
+    thumbnailBox.childNodes[parseInt(currentpic.src[currentpic.src.length - 5])].classList.add('active-image');
     startingIndex -= 1;
   } else {
     currentpic.setAttribute('src', images[images.length - 1]);
+    thumbnailBox.childNodes[parseInt(currentpic.src[currentpic.src.length - 5])].classList.add('active-image');
     startingIndex = images.length - 1;
   }
 });
@@ -48,3 +52,12 @@ function addThumbnailImage(src) {
 for (var i = 0; i < images.length; i++) {
   addThumbnailImage(images[i]);
 }
+
+var thumbnailBox = document.querySelector('.thumbnail-box');
+
+thumbnailBox.addEventListener('click', function() {
+  var newSrc = event.target.currentSrc;
+  event.target.classList.add('active-image');
+  currentpic.setAttribute('src', newSrc);
+  startingIndex = parseInt(newSrc[newSrc.length - 5]);
+});

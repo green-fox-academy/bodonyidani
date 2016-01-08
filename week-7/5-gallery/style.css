@@ -11,22 +11,36 @@ body {
 }
 
 .navigation-pane {
-  padding: 10% 1%;
+  padding: 15% 1%;
 }
 
-.leftbutton::before {
-  content: "\25BA";
+.leftbutton {
+  background-color: #fff;
+  background-image: url(./img/rightarrow.png);
+  background-size: contain;
+  border: none;
   display: inline-block;
+  height: 60px;
   transform: rotate(180deg);
+  width: 60px;
 }
 
-.rightbutton::before {
-  content: "\25BA";
+.rightbutton {
+  background-color: #fff;
+  background-image: url(./img/rightarrow.png);
+  background-size: contain;
+  border: none;
+  height: 60px;
+  width: 60px;
+}
+
+.leftbutton:focus, .rightbutton:focus {
+  outline: none;
 }
 
 .currentpic {
-  height: 100%;
-  width: 100%;
+  height: 45%;
+  width: 45%;
 }
 
 .thumbnail-box {
@@ -37,7 +51,12 @@ body {
 }
 
 .thumbnail-image {
-  height: 30%;
+  height: 10%;
   margin: 10px;
-  width: 30%;
+  width: 10%;
+}
+
+.thumbnail-image:hover {
+  transform: scale(1.1);
+  transition: all .2s ease-in-out;
 }

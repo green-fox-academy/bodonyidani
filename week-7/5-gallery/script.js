@@ -1,9 +1,13 @@
 'use strict';
 
 var images = [
-  './img/Dilbert_1.gif',
-  './img/Dilbert_2.gif',
-  './img/Dilbert_3.gif',
+  './img/anup-0.jpg',
+  './img/anup-1.jpg',
+  './img/anup-2.jpg',
+  './img/anup-3.jpg',
+  './img/anup-4.jpg',
+  './img/anup-5.jpg',
+  './img/anup-6.jpg'
 ];
 
 var leftbutton = document.querySelector('.leftbutton');

@@ -1,0 +1,24 @@
+.main {
+  display: flex;
+  font-family: sans-serif;
+}
+
+.left-side, .right-side {
+  width: 400px;
+}
+
+.todo-item {
+  align-items: center;
+  display: flex;
+  width: 400px;
+}
+
+.todo-text {
+  width: 200px;
+}
+
+.done-button, .delete-button {
+  height: 20px;
+  margin: 5px;
+  width: 80px;
+}

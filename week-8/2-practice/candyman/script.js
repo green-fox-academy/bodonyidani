@@ -6,7 +6,7 @@ var candyCounter = document.querySelector('.candies');
 var lollipopCounter = document.querySelector('.lollipops');
 var speedoMeter = document.querySelector('.speedometer');
 
-var candyCount = 0;
+var candyCount = 1000;
 var lollipopCount = 0;
 var currentInterval = 0;
 var currentSpeed = 0;

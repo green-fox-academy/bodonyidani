@@ -28,15 +28,15 @@ var listCallback = function(response) {
     var newDeleteButton = document.createElement('button');
     newMarkDoneButton.innerHTML = 'Mark Done';
     newMarkDoneButton.classList.add('done-button');
-    newMarkDoneButton.setAttribute('id', 'button-' + todoItem.id);
+    newMarkDoneButton.setAttribute('id', 'button-' + todoItem._id);
     newDeleteButton.innerHTML = 'Delete';
     newDeleteButton.classList.add('delete-button');
-    newDeleteButton.setAttribute('id', 'delete-button-' + todoItem.id);
-    newTodoItem.innerText = todoItem.id + " " + todoItem.text;
+    newDeleteButton.setAttribute('id', 'delete-button-' + todoItem._id);
+    newTodoItem.innerText = todoItem._id + " " + todoItem.text;
     newTodoDiv.classList.add('todo-item');
-    newTodoDiv.setAttribute('id', 'div-' + todoItem.id);
+    newTodoDiv.setAttribute('id', 'div-' + todoItem._id);
     newTodoItem.classList.add('todo-text');
-    if (todoItem.completed === '') {
+    if (todoItem.completed === false) {
       backlogContainer.appendChild(newTodoDiv);
       newTodoDiv.appendChild(newTodoItem);
       newTodoDiv.appendChild(newMarkDoneButton);
@@ -79,22 +79,22 @@ refresh();
 
 backlogContainer.addEventListener('click', function() {
   if (event.target.classList[0] === 'done-button') {
-    var taskIDAndName = event.target.parentNode.childNodes[0].innerHTML;
-    var taskID = taskIDAndName[0];
+    var taskidAndName = event.target.parentNode.childNodes[0].innerHTML;
+    var taskid = taskidAndName[0];
     var taskName = '';
-    for (var i = 2; i < taskIDAndName.length; i++) {
-      taskName += taskIDAndName[i];
+    for (var i = 2; i < taskidAndName.length; i++) {
+      taskName += taskidAndName[i];
       }
-    var doneTask = JSON.stringify({id: taskID, text: taskName, completed: true});
-    createRequest('PUT', url + '/' + taskID, doneTask, changeStatusCallback);
+    var doneTask = JSON.stringify({_id: taskid, text: taskName, completed: true});
+    createRequest('PUT', url + '/' + taskid, doneTask, changeStatusCallback);
   } else if (event.target.classList[0] === 'delete-button') {
-      var taskIDAndName = event.target.parentNode.childNodes[0].innerHTML;
-      var taskID = taskIDAndName[0];
+      var taskidAndName = event.target.parentNode.childNodes[0].innerHTML;
+      var taskid = taskidAndName[0];
       var taskName = '';
-      for (var i = 2; i < taskIDAndName.length; i++) {
-        taskName += taskIDAndName[i];
+      for (var i = 2; i < taskidAndName.length; i++) {
+        taskName += taskidAndName[i];
         }
-      var doneTask = JSON.stringify({id: taskID, text: taskName, completed: true, destroyed: true});
-      createRequest('DELETE', url + '/' + taskID, doneTask, changeStatusCallback);
+      var doneTask = JSON.stringify({_id: taskid, text: taskName, completed: true, destroyed: true});
+      createRequest('DELETE', url + '/' + taskid, doneTask, changeStatusCallback);
   }
 });

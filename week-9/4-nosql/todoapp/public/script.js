@@ -32,7 +32,7 @@ var listCallback = function(response) {
     newDeleteButton.innerHTML = 'Delete';
     newDeleteButton.classList.add('delete-button');
     newDeleteButton.setAttribute('id', 'delete-button-' + todoItem._id);
-    newTodoItem.innerText = todoItem._id + " " + todoItem.text;
+    newTodoItem.innerText = todoItem.text;
     newTodoDiv.classList.add('todo-item');
     newTodoDiv.setAttribute('id', 'div-' + todoItem._id);
     newTodoItem.classList.add('todo-text');

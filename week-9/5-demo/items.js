@@ -16,10 +16,18 @@ function addTodo(attributes) {
   });
 }
 
-function deleteTodo(attributes) {
-  connection.query('DELETE FROM todo WHERE ?', attributes, function(err, result) {
+function deleteTodo(id, cb) {
+  connection.query('DELETE FROM todo WHERE id=?', id, function(err, result) {
     if (err) throw err;
+    cb(result);
   });
+}
+
+function getItem(id, cb) {
+  connection.query('SELECT FROM todo WHERE id=?', id, function(err,result) {
+    if (err) throw err;
+    cb(result);
+  })
 }
 
 function getAllTodos(cb) {
@@ -29,15 +37,17 @@ function getAllTodos(cb) {
   });
 }
 
-function updateTodo(attributes) {
-  connection.query('UPDATE todo SET text=? WHERE todo_id=?', [attributes.text, attributes.id], function(err, result) {
+function updateTodo(id, cb) {
+  connection.query('UPDATE todo SET completed = \'true\' WHERE id=?', id, function(err, result) {
     if (err) throw err;
+    cb(result);
   });
 }
 
 module.exports = {
   add: addTodo,
-  delete: deleteTodo,
+  remove: deleteTodo,
+  get: getItem,
   all: getAllTodos,
   update: updateTodo
 };

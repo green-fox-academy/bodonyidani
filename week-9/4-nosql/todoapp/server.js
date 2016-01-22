@@ -26,42 +26,30 @@ app.post("/todos", function (req, res) {
 
 // GET /todos/1 => gets a single todo item
 app.get("/todos/:id", function (req, res) {
-  findItem(req, res, function (item) { res.json(item); });
+  items.all(function(result) {
+    res.json(result);
+  });
 });
 
 // PUT /todos/1 => edit a todo item
 // It accepts the same body as the POST /todos request.
 app.put("/todos/:id", function (req, res) {
-  findItem(req, res, function (item) {
-    item.update(req.body);
-    res.json(item);
+  items.update(req.params.id, function(result) {
+    res.json(result);
   });
 });
 
 // DELETE /todos/1 => remove a todo item
 // It deletes and returns a todo item.
 app.delete("/todos/:id", function (req, res) {
-  findItem(req, res, function (item) {
-    items.remove(item.id);
-    item.destroyed = true;
-    res.json(item);
+  items.remove(req.params.id, function(result) {
+    res.json(result);
   });
 });
 
 app.listen(3000, function () {
   console.log("Listening on port 3000...")
 });
-
-function findItem(req, res, found) {
-  var id = req.params.id;
-  var item = items.get(id, function(doc) {
-    if (doc) {
-      found(doc);
-    } else {
-      res.status(404).json({error: "Item not found"})
-    }
-  });
-}
 
 function logRequest(req, res, next) {
   var parts = [
